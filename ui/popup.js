@@ -1,15 +1,27 @@
 // Function to retrieve stored Gemini API key
 async function getApiKey() {
-    // Logic to retrieve stored Gemini API key
-    // Replace with actual implementation
-    return 'your-gemini-api-key';
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get('geminiApiKey', function(data) {
+            if (data.geminiApiKey) {
+                resolve(data.geminiApiKey);
+            } else {
+                reject('Gemini API Key not found');
+            }
+        });
+    });
 }
 
 // Function to retrieve stored GitHub PAT
 async function getGitHubToken() {
-    // Logic to retrieve stored GitHub PAT
-    // Replace with actual implementation
-    return 'your-github-pat';
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get('githubToken', function(data) {
+            if (data.githubToken) {
+                resolve(data.githubToken);
+            } else {
+                reject('GitHub Token not found');
+            }
+        });
+    });
 }
 
 // Function to generate files using Gemini API
@@ -56,6 +68,35 @@ async function commitAndPushFiles() {
     }
 }
 
+// Function to fetch repositories
+async function fetchRepositories() {
+    const token = await getGitHubToken();
+    const response = await fetch('https://api.github.com/user/repos', {
+        method: 'GET',
+        headers: {
+            'Authorization': `token ${token}`
+        }
+    });
+
+    if (response.ok) {
+        const repos = await response.json();
+        const repoSelect = document.getElementById('repository');
+        repos.forEach(repo => {
+            const option = document.createElement('option');
+            option.value = repo.name;
+            option.textContent = repo.name;
+            repoSelect.appendChild(option);
+        });
+    } else {
+        console.error('Failed to fetch repositories:', response.statusText);
+    }
+}
+
+// Function to save settings
+async function saveSettings() {
+    // Logic to save settings
+}
+
 // Add event listeners to buttons
 document.getElementById('generateBtn').addEventListener('click', async function() {
     const language = document.getElementById('language').value;
@@ -70,4 +111,21 @@ document.getElementById('commitPushBtn').addEventListener('click', async functio
     // Logic to commit and push files to GitHub
     console.log('Committing and pushing files to GitHub.');
     await commitAndPushFiles();
+});
+
+document.getElementById('settingsBtn').addEventListener('click', function() {
+    document.getElementById('mainView').style.display = 'none';
+    document.getElementById('settingsView').style.display = 'block';
+    fetchRepositories();
+});
+
+document.getElementById('backBtn').addEventListener('click', function() {
+    document.getElementById('settingsView').style.display = 'none';
+    document.getElementById('mainView').style.display = 'block';
+});
+
+document.getElementById('saveSettingsBtn').addEventListener('click', async function() {
+    // Call function to save settings
+    console.log('Saving settings.');
+    await saveSettings();
 });
