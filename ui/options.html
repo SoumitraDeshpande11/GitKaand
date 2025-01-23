@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div id="settings">
+        <h1>Settings</h1>
+        <div class="input-group">
+            <label for="geminiApiKey">Gemini API Key:</label>
+            <input type="text" id="geminiApiKey" placeholder="Enter your Gemini API Key">
+        </div>
+        <div class="input-group">
+            <label for="githubToken">GitHub Personal Access Token:</label>
+            <input type="text" id="githubToken" placeholder="Enter your GitHub PAT">
+        </div>
+        <button id="saveBtn">Save</button>
+        <button id="resetBtn">Reset Settings</button>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>

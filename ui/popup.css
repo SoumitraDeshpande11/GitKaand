@@ -1,0 +1,56 @@
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    color: #99ffcc;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select, input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    background-color: #99ffcc;
+    color: #1a1a1a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #85e6b3;
+}
+
+#logs {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 14px;
+    color: #ccc;
+}

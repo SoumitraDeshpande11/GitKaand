@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Generator</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="app">
+        <h1>AI Code Generator</h1>
+        <div class="input-group">
+            <label for="language">Programming Language:</label>
+            <select id="language">
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="numFiles">Number of Files:</label>
+            <input type="number" id="numFiles" min="1" value="1">
+        </div>
+        <div class="input-group">
+            <label for="linesPerFile">Lines of Code per File:</label>
+            <input type="number" id="linesPerFile" min="1" value="10">
+        </div>
+        <button id="generateBtn">Generate Files</button>
+        <button id="commitPushBtn">Commit & Push</button>
+        <div id="logs"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
